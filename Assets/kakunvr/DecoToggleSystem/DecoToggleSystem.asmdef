@@ -1,0 +1,16 @@
+{
+    "name": "DecoToggleSystem",
+    "references": [
+        "GUID:5718fb738711cd34ea54e9553040911d",
+        "GUID:3456780c4fb2d324ab9c633d6f1b0ddb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,12 @@
+{
+  "name": "com.kakunvr.decotogglesystem",
+  "version": "0.0.1",
+  "displayName": "DecoToggleSystem",
+  "description": "DecoToggleSystem",
+  "unity": "2019.4",
+  "vpmDependencies": {
+    "com.vrchat.avatars": ">=3.4.0",
+    "nadena.dev.modular-avatar": ">=1.8.0",
+    "nadena.dev.ndmf": ">=1.2.5"
+  }
+}

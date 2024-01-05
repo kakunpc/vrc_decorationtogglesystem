@@ -1,0 +1,56 @@
+name: ReleaseBuild
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  activation:
+    name: ReleaseBuild
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set output
+        id: vars
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
+      # package.jsonのバージョン値を書き換える
+      - name: Change Version
+        env:
+          VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          sed -i -e "s/\"version\": \".*\"/\"version\": \"$VERSION\"/g" Assets/kakunvr/DecoToggleSystem/package.json
+          sed -i -e "s/CurrentVersion: .*/CurrentVersion: $VERSION/g" Assets/kakunvr/DecoToggleSystem/VersionData.asset
+          mkdir output
+
+      - name: CreatePackage
+        run: ./.github/UnityPacker.exe Assets/kakunvr/DecoToggleSystem ExportedPackage
+
+      # Booth配布用のzipを作成する
+      - name: Create Booth Package
+        env:
+          VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          mv Docs/ FacialLockGenerator-$VERSION/
+          cp LICENCE FacialLockGenerator-$VERSION/
+          cp ExportedPackage.unitypackage FacialLockGenerator-$VERSION/FacialLockGenerator-$VERSION.unitypackage
+          zip FacialLockGenerator-$VERSION.zip FacialLockGenerator-$VERSION/*
+          mv FacialLockGenerator-$VERSION.zip output/FacialLockGenerator-$VERSION-booth.zip
+          mv FacialLockGenerator-$VERSION/FacialLockGenerator-$VERSION.unitypackage output/FacialLockGenerator-$VERSION.unitypackage
+
+      # VCC用のzipを作成する
+      - name: Create VCC Package
+        env:
+          VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          cd Assets/kakunvr/DecoToggleSystem
+          zip -r ../../output/com.kakunvr.facial-lock-generator-$VERSION.zip *
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          files: |
+            output/*
