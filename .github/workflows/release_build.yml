@@ -32,12 +32,12 @@ jobs:
         env:
           VERSION: ${{ steps.vars.outputs.tag }}
         run: |
-          mv Docs/ FacialLockGenerator-$VERSION/
-          cp LICENCE FacialLockGenerator-$VERSION/
-          cp ExportedPackage.unitypackage FacialLockGenerator-$VERSION/FacialLockGenerator-$VERSION.unitypackage
-          zip FacialLockGenerator-$VERSION.zip FacialLockGenerator-$VERSION/*
-          mv FacialLockGenerator-$VERSION.zip output/FacialLockGenerator-$VERSION-booth.zip
-          mv FacialLockGenerator-$VERSION/FacialLockGenerator-$VERSION.unitypackage output/FacialLockGenerator-$VERSION.unitypackage
+          mv Docs/ DecoToggleSystem-$VERSION/
+          cp LICENCE DecoToggleSystem-$VERSION/
+          cp ExportedPackage.unitypackage DecoToggleSystem-$VERSION/DecoToggleSystem-$VERSION.unitypackage
+          zip DecoToggleSystem-$VERSION.zip DecoToggleSystem-$VERSION/*
+          mv DecoToggleSystem-$VERSION.zip output/DecoToggleSystem-$VERSION-booth.zip
+          mv DecoToggleSystem-$VERSION/DecoToggleSystem-$VERSION.unitypackage output/DecoToggleSystem-$VERSION.unitypackage
 
       # VCC用のzipを作成する
       - name: Create VCC Package
@@ -45,7 +45,7 @@ jobs:
           VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           cd Assets/kakunvr/DecoToggleSystem
-          zip -r ../../output/com.kakunvr.facial-lock-generator-$VERSION.zip *
+          zip -r ../../output/com.kakunvr.deco-toggle-system-$VERSION.zip *
 
       - name: Create release
         uses: softprops/action-gh-release@v1
