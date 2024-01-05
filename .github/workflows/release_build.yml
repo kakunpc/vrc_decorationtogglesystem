@@ -45,7 +45,7 @@ jobs:
           VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           cd Assets/kakunvr/DecoToggleSystem
-          zip -r ../../output/com.kakunvr.deco-toggle-system-$VERSION.zip *
+          zip -r ../../../output/com.kakunvr.deco-toggle-system-$VERSION.zip *
 
       - name: Create release
         uses: softprops/action-gh-release@v1
