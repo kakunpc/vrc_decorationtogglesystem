@@ -11,8 +11,6 @@ namespace kakunvr.DecoToggleSystem.Editor
     {
         protected override void Execute(BuildContext context)
         {
-            Debug.Log("CreateMenuPhase");
-            var b = context.AvatarRootObject.GetComponentsInChildren<DecoToggleSystem>();
             var state = context.GetState<DecoToggleSystemState>();
 
             foreach (var stateAnimatorController in state.AnimatorControllers)
@@ -21,9 +19,7 @@ namespace kakunvr.DecoToggleSystem.Editor
                 var controller = stateAnimatorController.Value;
 
                 // MergeAnimatorでアニメーションを統合させる
-                var mam =
-                    VRC.Core.ExtensionMethods
-                        .GetOrAddComponent<ModularAvatarMergeAnimator>(context.AvatarRootObject);
+                var mam = context.AvatarRootObject.AddComponent<ModularAvatarMergeAnimator>();
                 mam.animator = controller;
                 mam.pathMode = MergeAnimatorPathMode.Relative;
 

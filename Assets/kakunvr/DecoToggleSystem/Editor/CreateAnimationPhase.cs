@@ -12,7 +12,7 @@ namespace kakunvr.DecoToggleSystem.Editor
             var state = context.GetState<DecoToggleSystemState>();
             foreach (var decoToggleSystem in decoToggleSystems)
             {
-                var controller = new AnimatorController() { name = "DTS Controller" };
+                var controller = new AnimatorController() { name = "DTS Controller " + decoToggleSystem.name };
 
                 foreach (var toggleParameter in decoToggleSystem.Parameter.ToggleParameters)
                 {
