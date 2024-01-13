@@ -11,8 +11,10 @@ namespace kakunvr.DecoToggleSystem
         [SerializeField] public bool UseRootMenu = true;
 
         [SerializeField] public string MenuRootName = "";
-        
+
         [SerializeField] public Texture2D MenuRootIcon;
+
+        [SerializeField] public bool WriteDefaultOn;
 
         [SerializeField] public List<ToggleParameter> ToggleParameters = new List<ToggleParameter>();
     }

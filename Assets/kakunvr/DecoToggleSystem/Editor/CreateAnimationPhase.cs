@@ -46,8 +46,10 @@ namespace kakunvr.DecoToggleSystem.Editor
                     };
                     var onState = layer.stateMachine.AddState($"{paramName}_ON", new Vector3(0, 300, 0));
                     onState.motion = onClip;
+                    onState.writeDefaultValues = decoToggleSystem.Parameter.WriteDefaultOn;
                     var offState = layer.stateMachine.AddState($"{paramName}_OFF", new Vector3(500, 300, 0));
                     offState.motion = offClip;
+                    offState.writeDefaultValues = decoToggleSystem.Parameter.WriteDefaultOn;
 
                     layer.stateMachine.defaultState = onState;
 

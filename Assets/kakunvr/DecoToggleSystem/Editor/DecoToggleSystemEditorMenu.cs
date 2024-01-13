@@ -68,8 +68,8 @@ namespace kakunvr.DecoToggleSystem.Editor
                     EditorGUILayout.ObjectField("Menu Root Icon", parameter.MenuRootIcon, typeof(Texture2D), false) as
                         Texture2D;
             }
-
-            EditorGUILayout.Separator();
+            
+            parameter.WriteDefaultOn = EditorGUILayout.Toggle("Write Default On", parameter.WriteDefaultOn);
 
             EditorGUILayout.PropertyField(toggleParameters, true);
             
