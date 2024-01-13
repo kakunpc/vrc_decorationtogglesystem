@@ -12,6 +12,14 @@ namespace kakunvr.DecoToggleSystem.Editor
             var state = context.GetState<DecoToggleSystemState>();
             foreach (var decoToggleSystem in decoToggleSystems)
             {
+                if (decoToggleSystem.enabled == false ||
+                    decoToggleSystem.gameObject.activeInHierarchy == false ||
+                    decoToggleSystem.gameObject.activeSelf == false ||
+                    decoToggleSystem.gameObject.CompareTag("EditorOnly"))
+                {
+                    continue;
+                }
+
                 var controller = new AnimatorController() { name = "DTS Controller " + decoToggleSystem.name };
 
                 foreach (var toggleParameter in decoToggleSystem.Parameter.ToggleParameters)

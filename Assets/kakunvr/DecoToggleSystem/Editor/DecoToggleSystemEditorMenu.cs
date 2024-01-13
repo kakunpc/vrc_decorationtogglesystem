@@ -42,6 +42,18 @@ namespace kakunvr.DecoToggleSystem.Editor
 
             var isForceCreateMenu = parameter.ToggleParameters.Count >= 8;
 
+            if (decoToggleSystem.enabled == false ||
+                decoToggleSystem.gameObject.activeInHierarchy == false ||
+                decoToggleSystem.gameObject.activeSelf == false ||
+                decoToggleSystem.gameObject.CompareTag("EditorOnly"))
+            {
+                GUILayout.BeginVertical("Box");
+                GUILayout.Label("ゲームオブジェクトが非アクティブ");
+                GUILayout.Label("または、EditorOnlyタグが付いているため、");
+                GUILayout.Label("無効化されています");
+                GUILayout.EndVertical();
+            }
+
             EditorGUI.BeginDisabledGroup(isForceCreateMenu);
             parameter.UseRootMenu = EditorGUILayout.Toggle("Use Root Menu", parameter.UseRootMenu);
             if (isForceCreateMenu)
