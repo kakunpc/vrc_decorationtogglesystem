@@ -23,7 +23,6 @@ namespace kakunvr.DecoToggleSystem.Editor
                 mam.animator = controller;
                 mam.pathMode = MergeAnimatorPathMode.Relative;
                 mam.matchAvatarWriteDefaults = true;
-                mam.deleteAttachedAnimator = true;
                 
                 // メニューを生成する
                 var firstMenu = ScriptableObject.CreateInstance<VRCExpressionsMenu>();
